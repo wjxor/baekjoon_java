@@ -6,50 +6,32 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         /*
-            필요한 것
+            10988번: 팰린드롬인지 확인하기
+            필요한것
 
-            - 수 입력
-
-            - 첫째 줄부터 2*N-1번째 줄까지 별 출력
-
-                *        N-1개 공백
-               ***       N-2개 공백
-              *****      N-3개 공백
-             *******     N-4개 공백
-            *********    N-5개 공백
-             *******
-              *****
-               ***
-                *
-
-
+            - 문자열 입력
+            - 입력받은 문자열이 뒤집은 문자열과 같은지 확인
+            - 같으면 팰린드롬이므로 1 출력, 다르면 0 출력
          */
 
-        int N = sc.nextInt();
+        String str = sc.nextLine();
 
-        for (int i = 1; i <= N; i++) {
-            for (int j = 0; j < N - i; j++) {
-                System.out.print(" ");
-            }
+        String reversed = reverseStr(str);
 
-            for (int j = 0; j < 2 * i - 1; j++) {
-                System.out.print("*");
-            }
-            System.out.println();
-        }
-
-        for (int i = N - 1; i > 0; i--) {
-            for (int j = 0; j < N - i; j++) {
-                System.out.print(" ");
-            }
-
-            for (int j = 0; j < 2 * i - 1; j++) {
-                System.out.print("*");
-            }
-            System.out.println();
-        }
+        if (str.equals(reversed))
+            System.out.println(1);
+        else
+            System.out.println(0);
 
         sc.close();
+    }
+
+    private static String reverseStr(String str) {
+        StringBuilder sb = new StringBuilder(str);
+
+        sb.reverse();
+
+        return sb.toString();
     }
 
 
