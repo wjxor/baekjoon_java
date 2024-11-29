@@ -1,46 +1,28 @@
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         /*
-            1157번: 단어 공부
+            2941번: 크로아티아 알파벳
             필요한것
 
-            - 문자열 입력후 대문자로 변환
-            - 알파벳 26자리의 공간을 만듦
-            - 입력한 알파벳 개수 확인
-            - 값을 하나씩 가져와서 대문자 - A(65)
-            - 해당 26자리 공간에 ++
-
-            - max 초기값 -1 ==> 배열 초기값이 0이기 떄문
-            - 최대값 찾기
-            - 최대값이 1개면 그 문자 출력, 여러개면 ? 출력
+            - 크로아티아 대체문구들 정의
+            - 문자열 입력받기
+            - 크로아티아 알파벳 일치하면 *로 대체시키기
+            - 길이를 출력
          */
 
-        String str = sc.nextLine().toUpperCase();
+        String[] croatia = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
 
-        int[] alphabet = new int[26];
+        String input = sc.nextLine();
 
-        for (int i = 0; i < str.length(); i++) {
-            int temp = str.charAt(i) - 'A';
-            alphabet[temp]++;
+        for (String alphabet : croatia) {
+            input = input.replace(alphabet, "*");
         }
 
-        int max = -1;
-        char ch = '?';
-        for (int i = 0; i < alphabet.length; i++) {
-            if (alphabet[i] > max) {
-                max = alphabet[i];
-                ch = (char)(i + 'A');
-            } else if (alphabet[i] == max) {
-                ch = '?';
-            }
-        }
-
-        System.out.println(ch);
+        System.out.println(input.length());
 
 
         sc.close();
