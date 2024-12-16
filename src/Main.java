@@ -5,27 +5,38 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         /*
-            2941번: 크로아티아 알파벳
+            1316번: 그룹 단어 체커
             필요한것
 
-            - 크로아티아 대체문구들 정의
-            - 문자열 입력받기
-            - 크로아티아 알파벳 일치하면 *로 대체시키기
-            - 길이를 출력
+            - 그룹 단어의 갯수를 입력받을 변수 선언
+            - 반복문으로 그룹 단어의 갯수만큼 루프
+            - 연속된 문자인지 확인하는 메소드 작성
+            - 연속된 문자면 카운트+1
+
          */
 
-        String[] croatia = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+        int n = sc.nextInt();
+        int groupWordCount = 0;
 
-        String input = sc.nextLine();
-
-        for (String alphabet : croatia) {
-            input = input.replace(alphabet, "*");
+        for (int i = 0; i < n; i++) {
+            String word = sc.next();
+            if (isGroupWord(word)) {
+                groupWordCount++;
+            }
         }
 
-        System.out.println(input.length());
+        System.out.println(groupWordCount);
+    }
 
-
-        sc.close();
+    private static boolean isGroupWord(String word) {
+        for (int i = 0; i < word.length() - 1; i++) {
+            if (word.charAt(i) != word.charAt(i + 1)) { // 연속된 문자가 아닐 때
+                if (word.substring(i + 1).contains(String.valueOf(word.charAt(i)))) {
+                    return false; // 이후에 동일 문자가 또 나오면 그룹 단어가 아님
+                }
+            }
+        }
+        return true;
     }
 
 
